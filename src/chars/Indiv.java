@@ -3,22 +3,19 @@ package chars;
 import chars.attacks.Attack;
 import game.ActionHandler;
 import game.Calcs;
-import inventory.Inventory;
+import items.Item;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public abstract class Indiv {
 	protected double attributes[] = new double[3], baseStats[] = new double[6], realStats[] = new double[6];
-	protected int numID, gold, level;
+	protected int gold, level, mainAtt;
 	protected String name, id;
 	static final String[] ATTRIBUTE_NAMES = {"Agility", "Strength", "Intelligence"}, STAT_NAMES = {"Attack", "Defense", "Evasion", "Speed", "Health", "Mana"};
     protected Attack[] attacks = new Attack[4];
-	Inventory inventory = new Inventory();
-	
-	public Inventory getInventory(){
-		return(inventory);
-	}
-	
+	protected ArrayList<Item> inventory = new ArrayList<>();
+
 	public double getAttributes(int get){
 		return(attributes[get]);
 	}
@@ -36,8 +33,8 @@ public abstract class Indiv {
 	public Attack[] getAttacks(){ return attacks; }
 	
 	protected void calculateRealStats(){ //Change so specific attributes give the damage for diff classes
-		int attOrder[] = {1, 0, 0, 0, 1, 2};
-		double multi[] = {2, 0.25, 0.1, 0.65, 2, 3};
+		int attOrder[] = {mainAtt, mainAtt, 0, 0, 1, 2};
+		double multi[] = {2, 0.5, 0.1, 0.65, 2, 3};
 		for(int i = 0; i < 6; i++){
 			realStats[i] = baseStats[i] + attributes[attOrder[i]] * multi[i];
 		}

@@ -41,9 +41,9 @@ public class ActionHandler implements ActionListener{
 			Calcs.display(frame, contentPane);
 		} else if(eventName.equals("Return")){
 			client.quest();
-		} else if(eventName.equals("inventory.Inventory")){
-			user.getInventory().menu(this, contentPane);
-			Calcs.display(frame, contentPane);
+		} else if(eventName.equals("Inventory")){
+			//TODO Heyo redo this
+			//Calcs.display(frame, contentPane);
 		} else if(eventName.equals("class")){
 			client.infoSelectPlayer();
 		} else if(eventName.indexOf("0") != -1){

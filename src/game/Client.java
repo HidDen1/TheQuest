@@ -8,10 +8,7 @@ import java.util.Arrays;
 
 import javax.swing.*;
 /*
- * TODO: Change all systems to reflect attacks being a class and that each individual player type has its own object
- *      So far: created classes and got their variables set up.
- *      Need to: make info display correctly(and allow it to do so for enemies)...
- * Rewrite Items
+ * TODO: Rewrite items
  * Rewrite Inventory
  * Rewrite Shop
  * Rewrite and Fwrite armor
@@ -24,7 +21,7 @@ public class Client {
 	private Player user;
 	
 	private Client(){
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		aH.getContentPane(contentPane);
 		aH.getFrame(frame);
 		aH.getClient(this);
@@ -64,9 +61,9 @@ public class Client {
 	}
 	
 	void quest(){
-		final String text[] = {"Go on a quest[Redacted]", "Your stats", "Enemies Killed[Redacted]", 
-				"Go to the shop[Redacted]", "Check your inventory", "Enemy Info[Redacted]"};
-		final String cmd[] = {"Quest", "Stats", "MurderCount", "Shop", "inventory.Inventory", "Enemy"};
+		final String[] text = {"Go on a quest[Redacted]", "Your stats", "Enemies Killed[Redacted]",
+				"Go to the shop[Redacted]", "Check your inventory[Redacted]", "Enemy Info[Redacted]"};
+		final String[] cmd = {"Quest", "Stats", "MurderCount", "Shop", "Inventory", "Enemy"};
 		
 		contentPane.removeAll();
 		contentPane.setLayout(new GridLayout(0, 2, 10, 10));

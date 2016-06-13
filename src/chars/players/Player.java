@@ -1,11 +1,14 @@
 package chars.players;
 
 import chars.Indiv;
+import items.Item;
 
 public class Player extends Indiv {
 
 	public Player(String name){
-		this.name = name;
+        this.name = name;
+        level = 1;
+        gold = 50;
 	}
 
     public static Player[] getPlayerTypes(){
@@ -18,6 +21,10 @@ public class Player extends Indiv {
             get[i] = getPlayerTypes()[i].getType();
         }
         return get;
+    }
+
+    public void addToInventory(Item i){
+        inventory.add(i);
     }
 	
 }
