@@ -3,7 +3,7 @@ package chars.players;
 import chars.Indiv;
 import items.Item;
 
-public class Player extends Indiv {
+public abstract class Player extends Indiv {
 
 	public Player(String name){
         this.name = name;
@@ -26,5 +26,5 @@ public class Player extends Indiv {
     public void addToInventory(Item i){
         inventory.add(i);
     }
-	
+
 }

@@ -2,12 +2,9 @@ package game;
 
 import chars.players.Player;
 
-import java.awt.*;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class ActionHandler implements ActionListener{
 	private JPanel contentPane;
@@ -46,14 +43,21 @@ public class ActionHandler implements ActionListener{
 			//Calcs.display(frame, contentPane);
 		} else if(eventName.equals("class")){
 			client.infoSelectPlayer();
-		} else if(eventName.indexOf("0") != -1){
-			client.infoPlayer(eventName.substring(1));
+        } else if (eventName.contains("0")) {
+            client.infoPlayer(eventName.substring(1));
 		} else if(eventName.equals("ReturnM")){
 			contentPane.removeAll();
 			client.startGame();
 		} else if(eventName.equals("ReturnI")){
             client.infoSelectPlayer();
-		}
-	}
+        } else if (eventName.equals("PInfo")) {
+            client.checkUser();
+        } else if (eventName.equals("ReturnP")) {
+            client.checkUser();
+        } else if (eventName.equals("Attacks")) {
+            user.getAllAttacks(contentPane, this);
+            Calcs.display(frame, contentPane);
+        }
+    }
 
 }

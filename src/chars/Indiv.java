@@ -9,12 +9,12 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public abstract class Indiv {
-	protected double attributes[] = new double[3], baseStats[] = new double[6], realStats[] = new double[6];
+    static final String[] ATTRIBUTE_NAMES = {"Agility", "Strength", "Intelligence"}, STAT_NAMES = {"Attack", "Defense", "Evasion", "Speed", "Health", "Mana"};
+    protected double attributes[] = new double[3], baseStats[] = new double[6], realStats[] = new double[6];
 	protected int gold, level, mainAtt;
 	protected String name, id;
-	static final String[] ATTRIBUTE_NAMES = {"Agility", "Strength", "Intelligence"}, STAT_NAMES = {"Attack", "Defense", "Evasion", "Speed", "Health", "Mana"};
-    protected Attack[] attacks = new Attack[4];
-	protected ArrayList<Item> inventory = new ArrayList<>();
+    protected Attack[] attacks = new Attack[5];
+    protected ArrayList<Item> inventory = new ArrayList<>();
 
 	public double getAttributes(int get){
 		return(attributes[get]);
@@ -58,7 +58,31 @@ public abstract class Indiv {
 		contentPane.add(new JLabel("Gold: " + gold));
 		JButton button = new JButton("Return");
 		button.addActionListener(aH);
-		button.setActionCommand("Return");
-		contentPane.add(button);
+        button.setActionCommand("ReturnP");
+        contentPane.add(button);
 	}
+
+    public void getAllAttacks(JPanel contentPane, ActionHandler aH) {
+
+        contentPane.removeAll();
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+        calculateRealAttackDamage();
+        for (Attack i : attacks) {
+            if (i.getBaseDamage() == 0) {
+                contentPane.add(new JLabel(i.getName() + ": " + i.getToolTip() + " Damage: " + i.getRealDamage()));
+            } else {
+                contentPane.add(new JLabel(i.getName() + ": " + i.getToolTip() + " Damage: " + i.getBaseDamage() + " + (" + (i.getRealDamage() - i.getBaseDamage()) + ") Cost: " + i.getCost()));
+            }
+        }
+        JButton button = new JButton("Return");
+        button.addActionListener(aH);
+        button.setActionCommand("ReturnP");
+        contentPane.add(button);
+    }
+
+    public void calculateRealAttackDamage() {
+        for (Attack i : attacks) {
+            i.setRealDamage(realStats[0]);
+        }
+    }
 }
