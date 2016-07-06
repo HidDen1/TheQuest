@@ -11,20 +11,20 @@ public class ActionHandler implements ActionListener{
 	private Client client;
 	private Player user;
 	private JFrame frame;
-	
-	public void getContentPane(JPanel cPane){
+
+	void getContentPane(JPanel cPane) {
 		contentPane = cPane;
 	}
-	
-	public void getClient(Client c){
+
+	void getClient(Client c) {
 		client = c;
 	}
-	
-	public void getPlayer(Player p){
+
+	void getPlayer(Player p) {
 		user = p;
 	}
-	
-	public void getFrame(JFrame f){
+
+	void getFrame(JFrame f) {
 		frame = f;
 	}
 	

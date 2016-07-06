@@ -28,8 +28,8 @@ public class Client {
 	}
 
     public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(() -> startGUI());
-    }
+		javax.swing.SwingUtilities.invokeLater(Client::startGUI);
+	}
 
     private static void startGUI() {
         JFrame.setDefaultLookAndFeelDecorated(false);
