@@ -1,8 +1,14 @@
 package items;
 
+import game.ActionHandler;
+
+import javax.swing.*;
+
 public abstract class Item {
     String name, tooltip;
-    int id;
+    int value;
+    boolean attr;
+    double effect;
 
     public String getName() {
         return (name);
@@ -12,7 +18,11 @@ public abstract class Item {
         return (tooltip);
     }
 
-    public int getID() {
-        return (id);
+    public int getValue() {
+        return value;
     }
+
+    public abstract void menu(int place, JFrame frame, JPanel contentPane, ActionHandler aH);
+
+    public abstract boolean used();
 }
