@@ -1,11 +1,7 @@
 package game;
 
+import javax.swing.*;
 import java.util.Arrays;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class Calcs {
 	/**Generates a random number between the parameters
@@ -70,7 +66,7 @@ public class Calcs {
 	 * @param num The number lock to be used
 	 * @return The number locked string array
 	 */
-	public static String[] createNumLock(String[] rep, int num){
+	public static String[] createLock(String[] rep, String num) {
 		String[] realRep = Arrays.copyOf(rep, rep.length);
 		for(int i = 0; i < rep.length; i++){
 			realRep[i] = num + realRep[i];

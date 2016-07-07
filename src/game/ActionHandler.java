@@ -39,12 +39,11 @@ public class ActionHandler implements ActionListener{
 		} else if(eventName.equals("Return")){
 			client.quest();
 		} else if(eventName.equals("Inventory")){
-			//TODO Heyo redo this
-			//Calcs.display(frame, contentPane);
+			user.inventoryMenu(contentPane, frame, this);
 		} else if(eventName.equals("class")){
 			client.infoSelectPlayer();
-        } else if (eventName.contains("0")) {
-            client.infoPlayer(eventName.substring(1));
+		} else if (eventName.contains("Inf")) {
+			client.infoPlayer(eventName.substring(3));
 		} else if(eventName.equals("ReturnM")){
 			contentPane.removeAll();
 			client.startGame();

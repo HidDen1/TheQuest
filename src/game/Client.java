@@ -40,8 +40,8 @@ public class Client {
 	void infoSelectPlayer(){
 		contentPane.removeAll();
         contentPane.setLayout(new GridLayout(0, 2, 10, 10));
-		Calcs.createButton(Player.getPlayerTypeNames(), Calcs.createNumLock(Player.getPlayerTypeNames(), 0), aH, contentPane);
-		Calcs.createButton(new String[]{"Return"}, new String[]{"ReturnM"}, aH, contentPane);
+        Calcs.createButton(Player.getPlayerTypeNames(), Calcs.createLock(Player.getPlayerTypeNames(), "Inf"), aH, contentPane);
+        Calcs.createButton(new String[]{"Return"}, new String[]{"ReturnM"}, aH, contentPane);
 		Calcs.display(frame, contentPane);
 	}
 	
@@ -71,13 +71,22 @@ public class Client {
 	
 	void quest(){
         final String[] text = {"Go on a quest[Redacted]", "Player info", "Go to the shop[Redacted]",
-                "Check your inventory[Redacted]", "Enemy Info[Redacted]"};
+                "Check your inventory", "Enemy Info[Redacted]"};
         final String[] cmd = {"Quest", "PInfo", "Shop", "Inventory", "Enemy"};
 
 		contentPane.removeAll();
 		contentPane.setLayout(new GridLayout(0, 2, 10, 10));
-		Calcs.createButton(text, cmd, aH, contentPane);
-		Calcs.display(frame, contentPane);
+        for (int i = 0; i < text.length; i++) {
+            final JButton button = new JButton(text[i]);
+            button.setActionCommand(cmd[i]);
+            button.addActionListener(aH);
+            if (i == 3 && user.invEmpty())
+                button.setEnabled(false);
+            else
+                button.setEnabled(true);
+            contentPane.add(button);
+        }
+        Calcs.display(frame, contentPane);
 	}
 
     //Move murder counts of enemies into stats
