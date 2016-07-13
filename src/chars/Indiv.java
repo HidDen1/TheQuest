@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public abstract class Indiv {
     static final String[] ATTRIBUTE_NAMES = {"Agility", "Strength", "Intelligence"}, STAT_NAMES = {"Attack", "Defense", "Evasion", "Speed", "Health", "Mana"};
-    protected double attributes[] = new double[3], baseStats[] = new double[6], realStats[] = new double[6];
-	protected int gold, level, mainAtt;
+    protected double attributes[] = new double[3], itemAttr[] = new double[3], itemStats[] = new double[6], baseStats[] = new double[6], realStats[] = new double[6];
+    protected int gold, level, mainAtt;
 	protected String name, id;
     protected Attack[] attacks = new Attack[5];
     protected ArrayList<Item> inventory = new ArrayList<>();
@@ -83,6 +83,26 @@ public abstract class Indiv {
     public void calculateRealAttackDamage() {
         for (Attack i : attacks) {
             i.setRealDamage(realStats[0]);
+        }
+    }
+
+    public void useItem(int num) {
+        Item item = inventory.get(num);
+        item.use();
+        if (item.getAttr()) {
+            itemAttr[item.getToEffect()] += item.getEffect();
+        } else {
+            itemStats[item.getToEffect()] += item.getEffect();
+        }
+        //Display the result of the item usage
+        cleanUpItems();
+    }
+
+    public void cleanUpItems() {
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).used()) {
+                inventory.remove(i);
+            }
         }
     }
 }

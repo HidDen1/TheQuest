@@ -53,4 +53,8 @@ public abstract class Player extends Indiv {
         Calcs.display(frame, contentPane);
     }
 
+    public void itemMenu(int num, JFrame frame, JPanel contentPane, ActionHandler aH) {
+        inventory.get(num).menu(num, frame, contentPane, aH);
+    }
+
 }

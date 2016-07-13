@@ -23,7 +23,11 @@ public class Consumable extends Item {
 
     @Override
     public boolean used() {
-        //change l8r
-        return false;
+        return use;
+    }
+
+    @Override
+    public void use() {
+        use = true;
     }
 }
