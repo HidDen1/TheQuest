@@ -15,6 +15,7 @@ public abstract class Indiv {
 	protected String name, id;
     protected Attack[] attacks = new Attack[5];
     protected ArrayList<Item> inventory = new ArrayList<>();
+    protected boolean itemUsagePronouns;
 
 	public double getAttributes(int get){
 		return(attributes[get]);
@@ -28,19 +29,25 @@ public abstract class Indiv {
 		return(realStats[get]);
 	}
 
+    public boolean invEmpty() {
+        return inventory.isEmpty();
+    }
+
 	public String getType(){ return id; }
 
 	public Attack[] getAttacks(){ return attacks; }
-	
-	protected void calculateRealStats(){ //Change so specific attributes give the damage for diff classes
-		int attOrder[] = {mainAtt, mainAtt, 0, 0, 1, 2};
+
+    //TODO Will need changed with update to stats
+    protected void calculateRealStats() {
+        int attOrder[] = {mainAtt, mainAtt, 0, 0, 1, 2};
 		double multi[] = {2, 0.5, 0.1, 0.65, 2, 3};
 		for(int i = 0; i < 6; i++){
 			realStats[i] = baseStats[i] + attributes[attOrder[i]] * multi[i];
 		}
 	}
-	
-	public void getAllStats(JPanel contentPane, ActionHandler aH){
+
+    //TODO Will need changed with update to stats
+    public void getAllStats(JPanel contentPane, ActionHandler aH){
 		String label[] = new String[10];
 		
 		contentPane.removeAll();
@@ -80,13 +87,15 @@ public abstract class Indiv {
         contentPane.add(button);
     }
 
+    //TODO Will need changed with update to stats
     public void calculateRealAttackDamage() {
         for (Attack i : attacks) {
             i.setRealDamage(realStats[0]);
         }
     }
 
-    public void useItem(int num) {
+    //TODO Will need changed w/ update to stats
+    public void useItem(int num, JPanel contentPane, JFrame frame, ActionHandler aH) {
         Item item = inventory.get(num);
         item.use();
         if (item.getAttr()) {
@@ -94,8 +103,26 @@ public abstract class Indiv {
         } else {
             itemStats[item.getToEffect()] += item.getEffect();
         }
-        //Display the result of the item usage
+        String s = item.getMessage();
+        if (itemUsagePronouns) {
+            s = "You have " + s;
+        } else {
+            s = "Your enemy has " + s;
+        }
+        contentPane.removeAll();
+        JLabel label = new JLabel(s);
+        JButton button = new JButton("Okay");
+        button.addActionListener(aH);
         cleanUpItems();
+        //Check battle status when added l8r
+        if (invEmpty()) {
+            button.setActionCommand("Return");
+        } else {
+            button.setActionCommand("Inventory");
+        }
+        contentPane.add(label);
+        contentPane.add(button);
+        Calcs.display(frame, contentPane);
     }
 
     public void cleanUpItems() {

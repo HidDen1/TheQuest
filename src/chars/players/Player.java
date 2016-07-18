@@ -19,6 +19,16 @@ public abstract class Player extends Indiv {
         return new Player[]{new PlayerKnight("")};
     }
 
+    public static Player[] getPlayerTypes(int[] i) {
+        Player[] players = getPlayerTypes(), toReturn = new Player[i.length];
+        int count = 0;
+        for (int j : i) {
+            toReturn[count] = players[j];
+            count++;
+        }
+        return toReturn;
+    }
+
     public static String[] getPlayerTypeNames(){
         String[] get = new String[getPlayerTypes().length];
         for(int i = 0; i < get.length; i++){
@@ -29,10 +39,6 @@ public abstract class Player extends Indiv {
 
     public void addToInventory(Item i){
         inventory.add(i);
-    }
-
-    public boolean invEmpty() {
-        return inventory.isEmpty();
     }
 
     public void inventoryMenu(JPanel contentPane, JFrame frame, ActionHandler aH) {

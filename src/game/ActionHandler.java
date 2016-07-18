@@ -56,6 +56,10 @@ public class ActionHandler implements ActionListener{
         } else if (eventName.equals("Attacks")) {
             user.getAllAttacks(contentPane, this);
             Calcs.display(frame, contentPane);
+        } else if (eventName.contains("invmenu")) {
+            user.itemMenu(Integer.parseInt(eventName.substring(0, 1)), frame, contentPane, this);
+        } else if (eventName.contains("item")) {
+            user.useItem(Integer.parseInt(eventName.substring(0, 1)), contentPane, frame, this);
         }
     }
 

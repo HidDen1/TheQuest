@@ -13,6 +13,7 @@ public class PlayerKnight extends Player{
         attacks = new Attack[]{new AttackNormal(), new AttackSwordSlash(), new AttackSwordSlash(), new AttackSwordSlash(), new AttackSwordSlash()};
         attributes = new double[]{3, 5, 3};
         baseStats = new double[]{10, 17.5, 4.7, 8.05, 90, 41};
+        itemUsagePronouns = true;
         this.calculateRealStats();
     }
 

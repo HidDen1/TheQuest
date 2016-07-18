@@ -7,8 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 /*
- * TODO: Rewrite items
- * Rewrite Inventory
+ * TODO: Make all stats managed by a new class that has the regular value and a max value
  * Rewrite Shop
  * Rewrite and Fwrite armor
  * Add equipable items 
