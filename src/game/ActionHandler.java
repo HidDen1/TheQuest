@@ -42,6 +42,8 @@ public class ActionHandler implements ActionListener{
 			user.inventoryMenu(contentPane, frame, this);
 		} else if(eventName.equals("class")){
 			client.infoSelectPlayer();
+		} else if (eventName.equals("PInfo")) {
+			client.checkUser();
 		} else if (eventName.contains("Inf")) {
 			client.infoPlayer(eventName.substring(3));
 		} else if(eventName.equals("ReturnM")){
@@ -49,10 +51,8 @@ public class ActionHandler implements ActionListener{
 			client.startGame();
 		} else if(eventName.equals("ReturnI")){
             client.infoSelectPlayer();
-        } else if (eventName.equals("PInfo")) {
-            client.checkUser();
-        } else if (eventName.equals("ReturnP")) {
-            client.checkUser();
+		} else if (eventName.equals("ReturnP")) {
+			client.checkUser();
         } else if (eventName.equals("Attacks")) {
             user.getAllAttacks(contentPane, this);
             Calcs.display(frame, contentPane);

@@ -9,8 +9,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public abstract class Indiv {
-    static final String[] ATTRIBUTE_NAMES = {"Agility", "Strength", "Intelligence"}, STAT_NAMES = {"Attack", "Defense", "Evasion", "Speed", "Health", "Mana"};
-    protected double attributes[] = new double[3], itemAttr[] = new double[3], itemStats[] = new double[6], baseStats[] = new double[6], realStats[] = new double[6];
+    static final String[] ATTRIBUTE_NAMES = {"Agility", "Strength", "Intelligence"}, STAT_NAMES = {"Attack", "Defense", "Evasion", "Speed"};
+    protected double attributes[] = new double[3], itemAttr[] = new double[3], itemStats[] = new double[4], baseStats[] = new double[4], realStats[] = new double[4];
+    protected Stat health, mana;
     protected int gold, level, mainAtt;
 	protected String name, id;
     protected Attack[] attacks = new Attack[5];
@@ -37,16 +38,19 @@ public abstract class Indiv {
 
 	public Attack[] getAttacks(){ return attacks; }
 
-    //TODO Will need changed with update to stats
     protected void calculateRealStats() {
         int attOrder[] = {mainAtt, mainAtt, 0, 0, 1, 2};
 		double multi[] = {2, 0.5, 0.1, 0.65, 2, 3};
 		for(int i = 0; i < 6; i++){
-			realStats[i] = baseStats[i] + attributes[attOrder[i]] * multi[i];
-		}
+            if (i != 4 && i != 5)
+                realStats[i] = baseStats[i] + attributes[attOrder[i]] * multi[i];
+            else if (i == 4)
+                health.changeMax(health.getBase() + attributes[attOrder[i]] * multi[i]);
+            else
+                mana.changeMax(mana.getBase() + attributes[attOrder[i]] * multi[i]);
+        }
 	}
 
-    //TODO Will need changed with update to stats
     public void getAllStats(JPanel contentPane, ActionHandler aH){
 		String label[] = new String[10];
 		
@@ -56,8 +60,13 @@ public abstract class Indiv {
 			if(i < 3){
 				label[i] = ATTRIBUTE_NAMES[i] + ": " + attributes[i];
 			}
-			label[i + 3] = STAT_NAMES[i] + ": " + realStats[i];
-		}
+            if (i != 4 && i != 5)
+                label[i + 3] = STAT_NAMES[i] + ": " + realStats[i];
+            else if (i == 4)
+                label[i + 3] = "Max Health: " + health.getMax();
+            else
+                label[i + 3] = "Max Mana: " + mana.getMax();
+        }
 		for(int i = 0; i < 9; i++){
 			JLabel line = new JLabel(label[i]);
 			contentPane.add(line);
@@ -87,7 +96,6 @@ public abstract class Indiv {
         contentPane.add(button);
     }
 
-    //TODO Will need changed with update to stats
     public void calculateRealAttackDamage() {
         for (Attack i : attacks) {
             i.setRealDamage(realStats[0]);
