@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 /*
- * TODO: Make all stats managed by a new class that has the regular value and a max value
+ * TODO: Make health and mana Stats; rewrite code for former process
  * Rewrite Shop
  * Rewrite and Fwrite armor
  * Add equipable items 
