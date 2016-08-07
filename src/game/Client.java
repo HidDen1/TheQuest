@@ -7,8 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 /*
- * TODO: Make health and mana Stats; rewrite code for former process
- * Rewrite Shop
+ * TODO: Rewrite Shop
  * Rewrite and Fwrite armor
  * Add equipable items 
  */
@@ -64,8 +63,12 @@ public class Client {
                 user = new PlayerKnight(((JTextField) getChoice[0]).getText());
                 break;
         }
-		aH.getPlayer(user);
-		this.quest();
+        /** ITEM ADDITION FOR TESTING SECTION
+         user.addToInventory(new ConsumableHealthPotion());
+         user.health.changeNum(50);
+         */
+        aH.getPlayer(user);
+        this.quest();
 	}
 	
 	void quest(){

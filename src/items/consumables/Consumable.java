@@ -1,6 +1,7 @@
 package items.consumables;
 
 import game.ActionHandler;
+import game.Calcs;
 import items.Item;
 
 import javax.swing.*;
@@ -16,9 +17,10 @@ public class Consumable extends Item {
         button.addActionListener(aH);
         button2.addActionListener(aH);
         button.setActionCommand(place + "item");
-        button2.setActionCommand("ReturnInv");
+        button2.setActionCommand("Inventory");
         contentPane.add(button);
         contentPane.add(button2);
+        Calcs.display(frame, contentPane);
     }
 
     @Override

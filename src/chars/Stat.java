@@ -7,6 +7,13 @@ public class Stat {
     public Stat(double base) {
         this.base = base;
         max = base;
+        num = base;
+    }
+
+    public Stat(double base, double max) {
+        this.base = base;
+        this.max = max;
+        num = max;
     }
 
     public double getNum() {

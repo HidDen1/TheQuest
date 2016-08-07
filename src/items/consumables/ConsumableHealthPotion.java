@@ -7,7 +7,7 @@ public class ConsumableHealthPotion extends Consumable {
         tooltip = "Heals for 50";
         message = " been healed for 50 points";
         value = 20;
-        toEffect = 4;
+        toEffect = -1;
         attr = false;
         effect = 50;
     }

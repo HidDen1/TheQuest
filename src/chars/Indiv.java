@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public abstract class Indiv {
     static final String[] ATTRIBUTE_NAMES = {"Agility", "Strength", "Intelligence"}, STAT_NAMES = {"Attack", "Defense", "Evasion", "Speed"};
+    public Stat health, mana;
     protected double attributes[] = new double[3], itemAttr[] = new double[3], itemStats[] = new double[4], baseStats[] = new double[4], realStats[] = new double[4];
-    protected Stat health, mana;
     protected int gold, level, mainAtt;
 	protected String name, id;
     protected Attack[] attacks = new Attack[5];
@@ -45,9 +45,9 @@ public abstract class Indiv {
             if (i != 4 && i != 5)
                 realStats[i] = baseStats[i] + attributes[attOrder[i]] * multi[i];
             else if (i == 4)
-                health.changeMax(health.getBase() + attributes[attOrder[i]] * multi[i]);
+                health = new Stat(health.getBase(), health.getBase() + attributes[attOrder[i]] * multi[i]);
             else
-                mana.changeMax(mana.getBase() + attributes[attOrder[i]] * multi[i]);
+                mana = new Stat(mana.getBase(), mana.getBase() + attributes[attOrder[i]] * multi[i]);
         }
 	}
 
@@ -63,9 +63,9 @@ public abstract class Indiv {
             if (i != 4 && i != 5)
                 label[i + 3] = STAT_NAMES[i] + ": " + realStats[i];
             else if (i == 4)
-                label[i + 3] = "Max Health: " + health.getMax();
+                label[i + 3] = "Health: " + health.getNum() + "/" + health.getMax();
             else
-                label[i + 3] = "Max Mana: " + mana.getMax();
+                label[i + 3] = "Mana: " + mana.getNum() + "/" + mana.getMax();
         }
 		for(int i = 0; i < 9; i++){
 			JLabel line = new JLabel(label[i]);
@@ -102,15 +102,22 @@ public abstract class Indiv {
         }
     }
 
-    //TODO Will need changed w/ update to stats
     public void useItem(int num, JPanel contentPane, JFrame frame, ActionHandler aH) {
         Item item = inventory.get(num);
         item.use();
-        if (item.getAttr()) {
+        if (item.getAttr())
             itemAttr[item.getToEffect()] += item.getEffect();
-        } else {
+        else if (item.getToEffect() < 0) {
+            if (item.getToEffect() == -1)
+                health.changeNum(health.getNum() + item.getEffect());
+            else if (item.getToEffect() == -2)
+                health.changeMax(health.getMax() + item.getEffect());
+            else if (item.getToEffect() == -3)
+                mana.changeNum(mana.getNum() + item.getEffect());
+            else if (item.getToEffect() == -4)
+                mana.changeMax(mana.getMax() + item.getEffect());
+        } else
             itemStats[item.getToEffect()] += item.getEffect();
-        }
         String s = item.getMessage();
         if (itemUsagePronouns) {
             s = "You have " + s;
