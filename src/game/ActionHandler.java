@@ -1,6 +1,7 @@
 package game;
 
 import chars.players.Player;
+import shop.Shop;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ public class ActionHandler implements ActionListener{
 	private Client client;
 	private Player user;
 	private JFrame frame;
+    private Shop shop;
 
 	void getContentPane(JPanel cPane) {
 		contentPane = cPane;
@@ -27,8 +29,12 @@ public class ActionHandler implements ActionListener{
 	void getFrame(JFrame f) {
 		frame = f;
 	}
-	
-	public void actionPerformed(ActionEvent event) {
+
+    public void getShop(Shop s) {
+        shop = s;
+    }
+
+    public void actionPerformed(ActionEvent event) {
 		String eventName = event.getActionCommand();
 		System.out.println(eventName);
 		if(eventName.equals("confirm")){
