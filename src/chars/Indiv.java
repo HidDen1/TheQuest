@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public abstract class Indiv {
     static final String[] ATTRIBUTE_NAMES = {"Agility", "Strength", "Intelligence"}, STAT_NAMES = {"Attack", "Defense", "Evasion", "Speed"};
+    static final int AGILITY_NUM = 0, STRENGTH_NUM = 1, INTELLIGENCE_NUM = 2, ATTACK_NUM = 0, DEFENSE_NUM = 1, EVASION_NUM = 2, SPEED_NUM = 3;
     public Stat health, mana;
     protected double attributes[] = new double[3], itemAttr[] = new double[3], itemStats[] = new double[4], baseStats[] = new double[4], realStats[] = new double[4];
     protected int gold, level, mainAtt;
