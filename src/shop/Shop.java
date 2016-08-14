@@ -15,6 +15,10 @@ public abstract class Shop {
         aH.getShop(this);
     }
 
+    public Item getItem(int i) {
+        return items.get(i);
+    }
+
     public void displayShop(JPanel contentPane, JFrame frame, ActionHandler aH, int money) {
         contentPane.removeAll();
         JLabel label = new JLabel("Hello traveller and welcome to the " + shopName);
@@ -41,5 +45,15 @@ public abstract class Shop {
 
     public void displayItem(JPanel contentPane, JFrame frame, ActionHandler aH, int placement) {
         contentPane.removeAll();
+        JLabel label = new JLabel("Are you sure you want to purchase the " + items.get(placement).getName() + " for " + items.get(placement).getValue() + "?");
+        contentPane.add(label);
+        JButton button = new JButton("Yes");
+        JButton button1 = new JButton("No");
+        button.addActionListener(aH);
+        button1.addActionListener(aH);
+        button.setActionCommand(placement + "purchase");
+        button1.setActionCommand("ShopR");
+        contentPane.add(button);
+        contentPane.add(button1);
     }
 }
