@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 /*
- * TODO: Rewrite Shop
+ * TODO: Show user gold in shop menu
  * Rewrite and Fwrite armor
  * Add equipable items 
  */

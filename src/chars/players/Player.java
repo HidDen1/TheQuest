@@ -37,8 +37,10 @@ public abstract class Player extends Indiv {
         return get;
     }
 
-    public void addToInventory(Item i){
+    public void boughtItem(Item i) {
+        gold -= i.getValue();
         inventory.add(i);
+        //TODO: Add a message here for user
     }
 
     public void inventoryMenu(JPanel contentPane, JFrame frame, ActionHandler aH) {

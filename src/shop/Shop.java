@@ -5,11 +5,12 @@ import game.Calcs;
 import items.Item;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Shop {
-    private ArrayList<Item> items = new ArrayList<>();
-    private String shopName, leaveCode;
+    protected ArrayList<Item> items = new ArrayList<>();
+    protected String shopName, leaveCode;
 
     public Shop(ActionHandler aH) {
         aH.getShop(this);
@@ -21,10 +22,11 @@ public abstract class Shop {
 
     public void displayShop(JPanel contentPane, JFrame frame, ActionHandler aH, int money) {
         contentPane.removeAll();
+        contentPane.setLayout(new GridLayout(0, 1, 10, 10));
         JLabel label = new JLabel("Hello traveller and welcome to the " + shopName);
         contentPane.add(label);
         for (int i = 0; i < items.size(); i++) {
-            JButton button = new JButton(items.get(i).getName());
+            JButton button = new JButton(items.get(i).getName() + " (Cost: " + items.get(i).getValue() + "G)");
             button.addActionListener(aH);
             if (money < items.get(i).getValue()) {
                 button.setEnabled(false);
@@ -32,7 +34,7 @@ public abstract class Shop {
             } else {
                 button.setToolTipText(items.get(i).getTooltip());
             }
-            button.setActionCommand(i + "shop");
+            button.setActionCommand(i + "shoop");
             contentPane.add(button);
         }
         JButton button = new JButton("Leave");
@@ -45,7 +47,7 @@ public abstract class Shop {
 
     public void displayItem(JPanel contentPane, JFrame frame, ActionHandler aH, int placement) {
         contentPane.removeAll();
-        JLabel label = new JLabel("Are you sure you want to purchase the " + items.get(placement).getName() + " for " + items.get(placement).getValue() + "?");
+        JLabel label = new JLabel("Are you sure you want to purchase the " + items.get(placement).getName() + " for " + items.get(placement).getValue() + " gold?");
         contentPane.add(label);
         JButton button = new JButton("Yes");
         JButton button1 = new JButton("No");
@@ -55,5 +57,6 @@ public abstract class Shop {
         button1.setActionCommand("ShopR");
         contentPane.add(button);
         contentPane.add(button1);
+        Calcs.display(frame, contentPane);
     }
 }

@@ -19,6 +19,10 @@ public abstract class Indiv {
     protected ArrayList<Item> inventory = new ArrayList<>();
     protected boolean itemUsagePronouns;
 
+    public int getMoney() {
+        return gold;
+    }
+
 	public double getAttributes(int get){
 		return(attributes[get]);
 	}
@@ -51,6 +55,10 @@ public abstract class Indiv {
                 mana = new Stat(mana.getBase(), mana.getBase() + attributes[attOrder[i]] * multi[i]);
         }
 	}
+
+    public void addToInventory(Item i) {
+        inventory.add(i);
+    }
 
     public void getAllStats(JPanel contentPane, ActionHandler aH){
 		String label[] = new String[10];
