@@ -23,7 +23,7 @@ public abstract class Shop {
     public void displayShop(JPanel contentPane, JFrame frame, ActionHandler aH, int money) {
         contentPane.removeAll();
         contentPane.setLayout(new GridLayout(0, 1, 10, 10));
-        JLabel label = new JLabel("Hello traveller and welcome to the " + shopName);
+        JLabel label = new JLabel("\"Hello traveller and welcome to the " + shopName + ".\" You have " + money + " gold.");
         contentPane.add(label);
         for (int i = 0; i < items.size(); i++) {
             JButton button = new JButton(items.get(i).getName() + " (Cost: " + items.get(i).getValue() + "G)");
