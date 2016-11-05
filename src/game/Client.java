@@ -7,9 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 /*
- * TODO: Show user gold in shop menu
- * Rewrite and Fwrite armor
- * Add equipable items 
+ * TODO: Add armor and etc equipables
+ * Add the freaking enemies
  */
 public class Client {
 	private JFrame frame = new JFrame("The Quest");
@@ -72,7 +71,7 @@ public class Client {
 	}
 	
 	void quest(){
-        final String[] text = {"Go on a quest[Redacted]", "Player info", "Go to the shop[Redacted]",
+        final String[] text = {"Go on a quest[Redacted]", "Player info", "Go to the shop",
                 "Check your inventory", "Enemy Info[Redacted]"};
         final String[] cmd = {"Quest", "PInfo", "Shop", "Inventory", "Enemy"};
 

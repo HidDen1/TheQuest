@@ -6,7 +6,7 @@ import items.consumables.ConsumableHealthPotion;
 import javax.swing.*;
 
 public abstract class Item {
-    static final int HEALTH_CODE = -1, MAX_HEALTH_CODE = -2, MANA_CODE = -3, MAX_MANA_CODE = -4;
+    protected static final int HEALTH_CODE = -1, MAX_HEALTH_CODE = -2, MANA_CODE = -3, MAX_MANA_CODE = -4;
     protected String name, tooltip, message;
     protected int value, toEffect;
     protected boolean attr, use;
